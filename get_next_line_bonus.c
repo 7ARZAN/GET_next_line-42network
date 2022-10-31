@@ -6,7 +6,7 @@
 /*   By: elakhfif <elakhfif@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:27:48 by elakhfif          #+#    #+#             */
-/*   Updated: 2022/10/31 09:27:53 by elakhfif         ###   ########.fr       */
+/*   Updated: 2022/10/31 11:32:44 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ char	*ft_read(int fd, char *buff, char *rest)
 	char	*tmp;
 	int		n;
 
-	n = 0;
-	while (find_new_line(rest) == -1)
+	n = 1;
+	while (n > 0 && find_new_line(rest) == -1)
 	{
 		n = read (fd, buff, BUFFER_SIZE);
 		if (n > 0)
@@ -95,13 +95,14 @@ char	*ft_read(int fd, char *buff, char *rest)
 			rest = NULL;
 			rest = tmp;
 		}
-		else
-			break ;
 	}
 	free (buff);
 	buff = NULL;
 	if (n == -1)
+	{
+		free(rest);
 		return (NULL);
+	}
 	return (rest);
 }
 
