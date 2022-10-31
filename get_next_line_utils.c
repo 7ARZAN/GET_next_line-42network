@@ -6,7 +6,7 @@
 /*   By: elakhfif <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 07:41:37 by elakhfif          #+#    #+#             */
-/*   Updated: 2022/10/26 08:02:04 by elakhfif         ###   ########.fr       */
+/*   Updated: 2022/10/31 09:18:12 by elakhfif         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,56 @@
 
 size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	unsigned int	i;
 	unsigned int	len1;
 	unsigned int	len2;
-	char			*result;
+	char			*str;
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	result = malloc((len1 + len2 + 1) * sizeof(char));
-	if (!result)
+	str = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!str)
 		return (NULL);
 	i = 0;
 	while (i < len1)
 	{
-		result[i] = s1[i];
+		str[i] = s1[i];
 		i++;
 	}
 	i = 0;
 	while (i < len2)
 	{
-		result[i + len1] = s2[i];
+		str[i + len1] = s2[i];
 		i++;
 	}
-	result[i + len1] = '\0';
-	return (result);
+	str[i + len1] = '\0';
+	return (str);
 }
 
 char	*ft_strdup(const char *s)
 {
+	char	*str;
 	int		i;
 	int		len;
-	char	*str;
 
 	i = 0;
-	len = ft_strlen(s1);
-	str = ((char *)malloc(sizeof(char) * (len + 1)));
-	if (str == NULL)
+	len = ft_strlen(s);
+	if (!s)
+		return (NULL);
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (NULL);
 	while (i < len)
 	{
@@ -70,17 +74,17 @@ char	*ft_strdup(const char *s)
 	return (str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	char	*str;
 	int		i;
+	char	*str;
 
 	if (!s)
 		return (NULL);
-	if (ft_strlen(s + start) < len)
-		str = malloc((ft_strlen(s + start) + 1) * sizeof(char));
+	else if (ft_strlen(s + start) < len)
+		str = malloc(sizeof(char) * (ft_strlen(s + start + 1)));
 	else
-		str = malloc(((int)len + 1) * sizeof(char));
+		str = malloc(sizeof(char) * ((int)len + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
