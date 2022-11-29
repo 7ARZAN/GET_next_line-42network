@@ -112,7 +112,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*rest[1024];
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || (fd != 0 && fd <= 2))
 		return (NULL);
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)

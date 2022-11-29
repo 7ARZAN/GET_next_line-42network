@@ -112,7 +112,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*rest;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || (fd != 0 && fd <= 2))
 		return (NULL);
 	buff = malloc (sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
@@ -121,4 +121,15 @@ char	*get_next_line(int fd)
 	line = ft_line(rest);
 	rest = ft_rest(rest);
 	return (line);
+}
+
+int main()
+{
+	int fd = open("TARZAN", O_CREAT | O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
 }

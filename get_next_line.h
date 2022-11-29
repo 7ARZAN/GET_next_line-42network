@@ -6,12 +6,16 @@
 /*   By: elakhfif <elakhfif@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 09:28:56 by elakhfif          #+#    #+#             */
-/*   Updated: 2022/10/31 09:29:00 by elakhfif         ###   ########.fr       */
+/*   Updated: 2022/11/28 22:13:38 by 7arzan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 17
+# endif
 
 # include <unistd.h>
 # include <fcntl.h>
